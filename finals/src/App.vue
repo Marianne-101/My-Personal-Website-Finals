@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import CommentSection from './components/CommentSection.vue'
+import Comment from './components/Comment.vue'
+import CommentForm from './components/CommentForm.vue'
 
 const showForm = ref(false);
 
