@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import Comment from './components/Comment.vue'
 import CommentForm from './components/CommentForm.vue'
-import { supabase } from './lib/supabaseClient'
+import { supabaseClient } from './lib/supabaseClient'
 
 
 const showForm = ref();
