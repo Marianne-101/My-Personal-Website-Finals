@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import CommentSection from './components/CommentSection.vue'
 
 const showForm = ref(false);
