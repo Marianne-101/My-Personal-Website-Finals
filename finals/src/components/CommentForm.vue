@@ -1,7 +1,7 @@
-
 <template>
   <div>
     <h2>Leave a Comment</h2>
+    <p class="leave-message">Leave a message</p>
     <form @submit.prevent="submitComment">
       <div class="form-group">
         <label for="name">Name:</label>
@@ -12,7 +12,7 @@
         <textarea id="comment" v-model="comment" required class="form-control"></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <div v-if="submissionStatus" class="mt-2">
+      <div v-if="submissionStatus" class="submission-message">
         {{ submissionStatus }}
       </div>
     </form>
@@ -53,30 +53,21 @@ async function submitComment() {
 }
 </script>
 
-<style scoped>
-/* Basic styling - Customize as needed */
-.form-group {
-  margin-bottom: 1rem;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.form-control {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
+<style>
+.leave-message {
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  font-size: 40px; /* Adjust as needed */
+  transition: color 0.1s ease-in-out; /* Smooth transition effect */
+}
+
+.leave-message:hover {
+  color: violet;
+}
+
+.submission-message {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 </style>

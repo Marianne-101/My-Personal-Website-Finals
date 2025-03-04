@@ -12,9 +12,10 @@
   #app > div {
     border: dashed black 1px;
     display: inline-block;
-    margin: 10px;
-    padding: 10px;
-    background-color: lightyellow;
+    margin: 1px;
+    width: 70%;
+    padding: 50px;
+    background-color: transparent;
   }
 </style>
 
@@ -34,14 +35,3 @@ getComments()
 })
 
 </script>
-
-
-<style>
-#app > div {
-  border: dashed black 1px;
-  display: inline-block;
-  margin: 10px;
-  padding: 10px;
-  background-color: lightyellow;
-}
-</style>
