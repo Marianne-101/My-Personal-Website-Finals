@@ -56,7 +56,9 @@ async function submitComment() {
 <style>
 .leave-message {
   color: white;
-  font-size: 40px; /* Adjust as needed */
+  font-family: "Brush Script MT", cursive;
+  font-size: 70px; /* Adjust as needed */
+  margin: 0;
   transition: color 0.1s ease-in-out; /* Smooth transition effect */
 }
 
@@ -68,6 +70,6 @@ async function submitComment() {
   color: white;
   font-size: 18px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 </style>
