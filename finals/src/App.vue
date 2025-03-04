@@ -1,22 +1,24 @@
-<template>
-      <div v-if="showForm">
-          <comment-form />
-          <comment />
-      </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  import Comment from './components/Comment.vue';
-  import CommentForm from './components/CommentForm.vue';
-  
-  const showForm = ref(false);
-  
-  function toggleContent() {
-      showForm.value = !showForm.value;
+<script setup>
+  import { ref, onMounted } from 'vue'
+  import { supabase } from './lib/supabaseClient'
+
+  const instruments = ref([])
+
+  async function getInstruments() {
+    const { data } = await supabase.from('instruments').select()
+    instruments.value = data
   }
-  
-  defineExpose({
-      toggleContent
-  });
+
+  onMounted(() => {
+    getInstruments()
+  })
   </script>
+
+<template>
+    <ul>
+      <li v-for="instrument in instruments" :key="instrument.id">{{ instrument.name }}</li>
+    </ul>
+    <comment-form/>
+    <comment/>
+
+</template>    
