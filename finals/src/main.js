@@ -1,14 +1,12 @@
-import './assets/style.css'
+import './assets/style.css';
+import { createApp } from 'vue';
+import App from './App.vue';
+import { createClient } from '@supabase/supabase-js';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import Comment from './components/Comment.vue'
-import CommentForm from './components/CommentForm.vue'
-import { createClient } from '@supabase/supabase-js'
+onst supabaseUrl = 'https://jezhjxodrkujwzixokmz.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplemhqeG9kcmt1and6aXhva216Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEwMDczODksImV4cCI6MjA1NjU4MzM4OX0.5EgaMoO3XsfWWj3v-018sy0ZY4qaEVI-oDhIFMfG0Pc';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-createApp(App).mount('#app')
-
-app.component('comment-form', CommentForm)
-app.component('comment', Comment)
-
-app.mount('#app')
+const app = createApp(App);
+app.provide('$supabase', supabase); // Inject Supabase globally
+app.mount('#app');

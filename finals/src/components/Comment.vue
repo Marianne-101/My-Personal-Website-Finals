@@ -1,35 +1,37 @@
 <template>
-  <h1>Comments</h1>
-  <ul>
-    <li v-for="comment in comments" :key="comment.id">{{ comment.name }} {{ comment.comment }}</li>
-  </ul>
+  <div>
+      <h3>Comments:</h3>
+      <ul v-if="comments.length > 0">
+          <li v-for="comment in comments" :key="comment.id">
+              <strong>{{ comment.name }}</strong>: {{ comment.comment }}
+          </li>
+      </ul>
+      <p v-else>No comments yet.</p>
+      
+      <!-- Comment Form Component -->
+      <CommentForm @comment-added="getComments" />
+  </div>
 </template>
 
-<script></script>
-
-<style>
-  #app > div {
-    border: dashed black 1px;
-    display: inline-block;
-    margin: 10px;
-    padding: 10px;
-    background-color: lightyellow;
-  }
-</style>
-
 <script setup>
-import { ref, onMounted } from 'vue'
-import { supabase } from '../lib/supabaseClient'
+import { ref, onMounted, inject } from 'vue';
+import CommentForm from './CommentForm.vue';
 
-const comments = ref([])
+const comments = ref([]);
+const supabase = inject('$supabase');
 
 async function getComments() {
-const { data } = await supabase.from('comments').select()
-comments.value = data
+  try {
+      const { data, error } = await supabase.from('comments').select().order('id', { ascending: false }); // Fetch latest first
+      if (error) {
+          console.error('Error fetching comments:', error);
+          return;
+      }
+      comments.value = data || [];
+  } catch (error) {
+      console.error('An unexpected error occurred:', error);
+  }
 }
 
-onMounted(() => {
-getComments()
-})
-
+onMounted(getComments);
 </script>
